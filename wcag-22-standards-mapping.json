@@ -1,0 +1,417 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-08-03",
+    "wcag_version": "2.2",
+    "section_508_version": "Revised 508 (2017) - References WCAG 2.0",
+    "en_301_549_version": "V3.2.1 (2021) - References WCAG 2.1",
+    "description": "Maps WCAG 2.2 Level A and AA Success Criteria to Section 508 and EN 301 549 requirements. Empty arrays indicate the standard has not yet been updated to include that WCAG version.",
+    "notes": {
+      "section_508_exceptions": "For non-web documents and software, Section 508 does NOT require: 2.4.1, 2.4.5, 3.2.3, 3.2.4",
+      "section_508_coverage": "Only WCAG 2.0 criteria have Section 508 mappings",
+      "en_301_549_coverage": "WCAG 2.0 and 2.1 criteria have EN 301 549 mappings",
+      "wcag_22_new": "6 new WCAG 2.2 criteria have no mappings yet in either standard"
+    },
+    "section_508_titles": {
+      "E205.4": "Electronic Content - Accessibility Standard (WCAG 2.0 Level A/AA conformance)",
+      "E207.2": "Software - WCAG Conformance (User interface and application content)",
+      "602.3": "Support Documentation - Electronic Support Documentation (WCAG 2.0 Level A/AA conformance)"
+    },
+    "en_301_549_titles": {
+      "9": "Web content (direct WCAG reference)",
+      "10": "Non-web documents (adapted WCAG)",
+      "11": "Software (adapted WCAG)"
+    }
+  },
+  "mappings": {
+    "1.1.1": {
+      "name": "Non-text Content",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.1.1", "10.1.1.1", "11.1.1.1"]
+    },
+    "1.2.1": {
+      "name": "Audio-only and Video-only (Prerecorded)",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.2.1", "10.1.2.1", "11.1.2.1"]
+    },
+    "1.2.2": {
+      "name": "Captions (Prerecorded)",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.2.2", "10.1.2.2", "11.1.2.2"]
+    },
+    "1.2.3": {
+      "name": "Audio Description or Media Alternative (Prerecorded)",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.2.3", "10.1.2.3", "11.1.2.3"]
+    },
+    "1.2.4": {
+      "name": "Captions (Live)",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.2.4", "10.1.2.4", "11.1.2.4"]
+    },
+    "1.2.5": {
+      "name": "Audio Description (Prerecorded)",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.2.5", "10.1.2.5", "11.1.2.5"]
+    },
+    "1.3.1": {
+      "name": "Info and Relationships",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.3.1", "10.1.3.1", "11.1.3.1"]
+    },
+    "1.3.2": {
+      "name": "Meaningful Sequence",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.3.2", "10.1.3.2", "11.1.3.2"]
+    },
+    "1.3.3": {
+      "name": "Sensory Characteristics",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.3.3", "10.1.3.3", "11.1.3.3"]
+    },
+    "1.3.4": {
+      "name": "Orientation",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.3.4", "10.1.3.4", "11.1.3.4"]
+    },
+    "1.3.5": {
+      "name": "Identify Input Purpose",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.3.5", "10.1.3.5", "11.1.3.5"]
+    },
+    "1.4.1": {
+      "name": "Use of Color",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.4.1", "10.1.4.1", "11.1.4.1"]
+    },
+    "1.4.2": {
+      "name": "Audio Control",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.4.2", "10.1.4.2", "11.1.4.2"]
+    },
+    "1.4.3": {
+      "name": "Contrast (Minimum)",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.4.3", "10.1.4.3", "11.1.4.3"]
+    },
+    "1.4.4": {
+      "name": "Resize Text",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.4.4", "10.1.4.4", "11.1.4.4"]
+    },
+    "1.4.5": {
+      "name": "Images of Text",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.1.4.5", "10.1.4.5", "11.1.4.5"]
+    },
+    "1.4.10": {
+      "name": "Reflow",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.4.10", "10.1.4.10", "11.1.4.10"]
+    },
+    "1.4.11": {
+      "name": "Non-text Contrast",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.4.11", "10.1.4.11", "11.1.4.11"]
+    },
+    "1.4.12": {
+      "name": "Text Spacing",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.4.12", "10.1.4.12", "11.1.4.12"]
+    },
+    "1.4.13": {
+      "name": "Content on Hover or Focus",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.1.4.13", "10.1.4.13", "11.1.4.13"]
+    },
+    "2.1.1": {
+      "name": "Keyboard",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.1.1", "10.2.1.1", "11.2.1.1"]
+    },
+    "2.1.2": {
+      "name": "No Keyboard Trap",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.1.2", "10.2.1.2", "11.2.1.2"]
+    },
+    "2.1.4": {
+      "name": "Character Key Shortcuts",
+      "level": "A",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.2.1.4", "10.2.1.4", "11.2.1.4"]
+    },
+    "2.2.1": {
+      "name": "Timing Adjustable",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.2.1", "10.2.2.1", "11.2.2.1"]
+    },
+    "2.2.2": {
+      "name": "Pause, Stop, Hide",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.2.2", "10.2.2.2", "11.2.2.2"]
+    },
+    "2.3.1": {
+      "name": "Three Flashes or Below Threshold",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.3.1", "10.2.3.1", "11.2.3.1"]
+    },
+    "2.4.1": {
+      "name": "Bypass Blocks",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "602.3"],
+      "section_508_note": "NOT required for non-web documents (E205.4) or non-web software (E207.2)",
+      "en_301_549": ["9.2.4.1", "10.2.4.1", "11.2.4.1"]
+    },
+    "2.4.2": {
+      "name": "Page Titled",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.4.2", "10.2.4.2", "11.2.4.2"]
+    },
+    "2.4.3": {
+      "name": "Focus Order",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.4.3", "10.2.4.3", "11.2.4.3"]
+    },
+    "2.4.4": {
+      "name": "Link Purpose (In Context)",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.4.4", "10.2.4.4", "11.2.4.4"]
+    },
+    "2.4.5": {
+      "name": "Multiple Ways",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "602.3"],
+      "section_508_note": "NOT required for non-web documents (E205.4) or non-web software (E207.2)",
+      "en_301_549": ["9.2.4.5", "10.2.4.5", "11.2.4.5"]
+    },
+    "2.4.6": {
+      "name": "Headings and Labels",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.4.6", "10.2.4.6", "11.2.4.6"]
+    },
+    "2.4.7": {
+      "name": "Focus Visible",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.2.4.7", "10.2.4.7", "11.2.4.7"]
+    },
+    "2.4.11": {
+      "name": "Focus Not Obscured (Minimum)",
+      "level": "AA",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "2.5.1": {
+      "name": "Pointer Gestures",
+      "level": "A",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.2.5.1", "10.2.5.1", "11.2.5.1"]
+    },
+    "2.5.2": {
+      "name": "Pointer Cancellation",
+      "level": "A",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.2.5.2", "10.2.5.2", "11.2.5.2"]
+    },
+    "2.5.3": {
+      "name": "Label in Name",
+      "level": "A",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.2.5.3", "10.2.5.3", "11.2.5.3"]
+    },
+    "2.5.4": {
+      "name": "Motion Actuation",
+      "level": "A",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.2.5.4", "10.2.5.4", "11.2.5.4"]
+    },
+    "2.5.7": {
+      "name": "Dragging Movements",
+      "level": "AA",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "2.5.8": {
+      "name": "Target Size (Minimum)",
+      "level": "AA",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "3.1.1": {
+      "name": "Language of Page",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.1.1", "10.3.1.1", "11.3.1.1"]
+    },
+    "3.1.2": {
+      "name": "Language of Parts",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.1.2", "10.3.1.2", "11.3.1.2"]
+    },
+    "3.2.1": {
+      "name": "On Focus",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.2.1", "10.3.2.1", "11.3.2.1"]
+    },
+    "3.2.2": {
+      "name": "On Input",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.2.2", "10.3.2.2", "11.3.2.2"]
+    },
+    "3.2.3": {
+      "name": "Consistent Navigation",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "602.3"],
+      "section_508_note": "NOT required for non-web documents (E205.4) or non-web software (E207.2)",
+      "en_301_549": ["9.3.2.3", "10.3.2.3", "11.3.2.3"]
+    },
+    "3.2.4": {
+      "name": "Consistent Identification",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "602.3"],
+      "section_508_note": "NOT required for non-web documents (E205.4) or non-web software (E207.2)",
+      "en_301_549": ["9.3.2.4", "10.3.2.4", "11.3.2.4"]
+    },
+    "3.2.6": {
+      "name": "Consistent Help",
+      "level": "A",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "3.3.1": {
+      "name": "Error Identification",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.3.1", "10.3.3.1", "11.3.3.1"]
+    },
+    "3.3.2": {
+      "name": "Labels or Instructions",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.3.2", "10.3.3.2", "11.3.3.2"]
+    },
+    "3.3.3": {
+      "name": "Error Suggestion",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.3.3", "10.3.3.3", "11.3.3.3"]
+    },
+    "3.3.4": {
+      "name": "Error Prevention (Legal, Financial, Data)",
+      "level": "AA",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.3.3.4", "10.3.3.4", "11.3.3.4"]
+    },
+    "3.3.7": {
+      "name": "Redundant Entry",
+      "level": "A",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "3.3.8": {
+      "name": "Accessible Authentication (Minimum)",
+      "level": "AA",
+      "wcag_version": "2.2",
+      "section_508": [],
+      "en_301_549": []
+    },
+    "4.1.2": {
+      "name": "Name, Role, Value",
+      "level": "A",
+      "wcag_version": "2.0",
+      "section_508": ["E205.4", "E207.2", "602.3"],
+      "en_301_549": ["9.4.1.2", "10.4.1.2", "11.4.1.2"]
+    },
+    "4.1.3": {
+      "name": "Status Messages",
+      "level": "AA",
+      "wcag_version": "2.1",
+      "section_508": [],
+      "en_301_549": ["9.4.1.3", "10.4.1.3", "11.4.1.3"]
+    }
+  }
+}
