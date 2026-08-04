@@ -40,6 +40,9 @@
             /* Palette colors for gradients */
             --token-color-palette-blue-200: #1060ff;
             --token-color-palette-purple-200: #a737ff;
+            
+            /* Highlight colors */
+            --token-color-foreground-highlight-high-contrast: #42215b;
         }
 
         * {
@@ -66,7 +69,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--token-color-palette-blue-200) 0%, var(--token-color-palette-purple-200) 100%);
+            background: var(--token-color-foreground-highlight-high-contrast);
             color: var(--token-color-foreground-high-contrast);
             padding: 30px;
         }
@@ -101,13 +104,24 @@
             border-left: 4px solid var(--token-color-foreground-action);
         }
 
-        .metadata-item strong {
-            display: block;
+        .metadata-item .metadata-label {
+            font-weight: bold;
             color: var(--token-color-foreground-action);
-            margin-bottom: 5px;
             font-size: 0.9em;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .region-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            margin-left: 8px;
+            font-size: 0.75em;
+            font-weight: 600;
+            border-radius: 4px;
+            background: var(--token-color-surface-strong);
+            color: var(--token-color-foreground-primary);
+            border: 1px solid var(--token-color-border-primary);
         }
 
         .controls {
@@ -195,31 +209,6 @@
             outline-offset: 2px;
         }
 
-        .stats {
-            padding: 15px 30px;
-            background: var(--token-color-surface-faint);
-            border-bottom: 1px solid var(--token-color-border-primary);
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .stat-number {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--token-color-foreground-action);
-        }
-
-        .stat-label {
-            color: var(--token-color-foreground-faint);
-            font-size: 0.9em;
-        }
 
         .mappings-container {
             padding: 30px;
@@ -359,6 +348,26 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            justify-content: space-between;
+        }
+
+        .standard-link {
+            font-size: 0.85em;
+            font-weight: normal;
+            color: var(--token-color-foreground-action);
+            text-decoration: underline;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .standard-link:hover {
+            color: var(--token-color-foreground-action-hover);
+        }
+
+        .standard-link:focus {
+            outline: 2px solid var(--token-color-foreground-action);
+            outline-offset: 2px;
         }
 
         .standard-icon {
@@ -464,8 +473,11 @@
 
         .skip-link {
             position: absolute;
-            top: -40px;
-            left: 0;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
             background: var(--token-color-foreground-action);
             color: var(--token-color-foreground-high-contrast);
             padding: 0.5rem 1rem;
@@ -479,12 +491,29 @@
         }
 
         .skip-link:focus {
+            position: absolute;
+            left: 0;
             top: 0;
+            width: auto;
+            height: auto;
+            overflow: visible;
             outline: 3px solid var(--token-color-foreground-strong);
             outline-offset: 2px;
         }
 
         .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .sr-only {
             position: absolute;
             width: 1px;
             height: 1px;
@@ -539,13 +568,12 @@
             </div>
         </div>
 
-        <div class="stats" id="stats"></div>
-
         <div class="mappings-container" id="mappingsContainer"></div>
+        <div class="sr-only" aria-live="polite" aria-atomic="true" id="resultsAnnouncement"></div>
         </main>
 
         <footer role="contentinfo">
-            <p>Data sources: <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">WCAG 2.2</a>, <a href="https://www.access-board.gov/ict/" target="_blank" rel="noopener noreferrer">Section 508</a>, and <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf" target="_blank" rel="noopener noreferrer">EN 301 549</a> | Generated by <a href="https://bob.ibm.com" target="_blank" rel="noopener noreferrer">IBM Bob</a></p>
+            <p>Data sources: <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">WCAG 2.2</a>, <a href="https://www.access-board.gov/ict/" target="_blank" rel="noopener noreferrer">Section 508</a>, <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf" target="_blank" rel="noopener noreferrer">EN 301 549</a>, and <a href="https://www.itic.org/policy/accessibility/vpat" target="_blank" rel="noopener noreferrer">VPAT</a> | Generated by <a href="https://bob.ibm.com" target="_blank" rel="noopener noreferrer">IBM Bob</a></p>
         </footer>
     </div>
 
@@ -553,6 +581,7 @@
         let mappingData = null;
         let currentFilter = 'all';
         let searchTerm = '';
+        let searchDebounceTimer = null;
 
         // Load JSON data
         async function loadData() {
@@ -569,7 +598,6 @@
 
         function initializeViewer() {
             renderMetadata();
-            renderStats();
             renderMappings();
             setupEventListeners();
         }
@@ -581,7 +609,23 @@
 
         function getEN301549Title(reqId) {
             const titles = mappingData.metadata.en_301_549_titles;
-            // Extract the clause number (9, 10, or 11) from the requirement ID
+            
+            // Check for exact match first (for Clause 4 items like 4.2.1, and special items like 11.8.2)
+            if (titles[reqId]) {
+                return titles[reqId];
+            }
+            
+            // For Clause 4 items (4.2.x), try to find exact match
+            if (reqId.startsWith('4.2.')) {
+                return titles[reqId] || 'Functional Performance';
+            }
+            
+            // For special documentation clauses (11.8.2, 12.1.2, 12.2.4)
+            if (reqId === '11.8.2' || reqId === '12.1.2' || reqId === '12.2.4') {
+                return titles[reqId] || 'Documentation requirement';
+            }
+            
+            // Extract the main clause number (9, 11) from the requirement ID
             const clauseNum = reqId.split('.')[0];
             return titles[clauseNum] || 'EN 301 549 requirement';
         }
@@ -622,59 +666,30 @@
             
             grid.innerHTML = `
                 <div class="metadata-item">
-                    <strong>WCAG Version</strong>
-                    ${metadata.wcag_version}
+                    <span class="metadata-label">WCAG Version 2.2 (A/AA)</span>
                 </div>
                 <div class="metadata-item">
-                    <strong>Section 508</strong>
-                    ${metadata.section_508_version}
+                    <span class="metadata-label">Section 508 (Revised, 2017)</span>
+                    <span class="region-badge" aria-label="United States">US</span>
                 </div>
                 <div class="metadata-item">
-                    <strong>EN 301 549</strong>
-                    ${metadata.en_301_549_version}
+                    <span class="metadata-label">EN 301 549 (V3.2.1)</span>
+                    <span class="region-badge" aria-label="European Union">EU</span>
                 </div>
             `;
         }
 
-        function renderStats() {
-            const mappings = mappingData.mappings;
-            const total = Object.keys(mappings).length;
-            const levelA = Object.values(mappings).filter(m => m.level === 'A').length;
-            const levelAA = Object.values(mappings).filter(m => m.level === 'AA').length;
-            const with508 = Object.values(mappings).filter(m => m.section_508.length > 0).length;
-            const withEN = Object.values(mappings).filter(m => m.en_301_549.length > 0).length;
 
-            document.getElementById('stats').innerHTML = `
-                <div class="stat-item">
-                    <span class="stat-number">${total}</span>
-                    <span class="stat-label">Total Criteria</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">${levelA}</span>
-                    <span class="stat-label">Level A</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">${levelAA}</span>
-                    <span class="stat-label">Level AA</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">${with508}</span>
-                    <span class="stat-label">With Section 508</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">${withEN}</span>
-                    <span class="stat-label">With EN 301 549</span>
-                </div>
-            `;
-        }
-
-        function renderMappings() {
+        function renderMappings(announceResults = false) {
             const container = document.getElementById('mappingsContainer');
             const mappings = mappingData.mappings;
             const filtered = filterMappings(mappings);
 
             if (filtered.length === 0) {
                 container.innerHTML = '<div class="no-results"><h3>No Results Found</h3><p>Try adjusting your search or filters</p></div>';
+                if (announceResults) {
+                    announceResultCount(0);
+                }
                 return;
             }
 
@@ -697,44 +712,75 @@
                     <div class="mapping-body">
                         <div class="standard-section">
                             <div class="standard-title">
-                                <span class="standard-icon icon-508"></span>
-                                Section 508
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="standard-icon icon-508"></span>
+                                    Section 508
+                                </span>
+                                <a href="https://www.access-board.gov/ict/" class="standard-link" target="_blank" rel="noopener noreferrer">Section 508 documentation</a>
                             </div>
                             ${data.section_508.length > 0 ? `
                                 <ul class="requirement-list">
-                                    ${data.section_508.map(req => `
-                                        <li class="requirement-item">
-                                            <a href="${getSection508URL(req)}" target="_blank" rel="noopener noreferrer">${req}</a>
+                                    ${data.section_508.map(req => {
+                                        if (req === 'No equivalent criteria') {
+                                            return `<li class="requirement-item" style="border-left-color: #ffc107;">
+                                                <span style="color: #856404; font-style: italic;">${req}</span>
+                                            </li>`;
+                                        }
+                                        return `<li class="requirement-item">
+                                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">${req}</span>
                                             <div style="font-size: 0.85em; color: #495057; margin-top: 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
                                                 ${getSection508Title(req)}
                                             </div>
-                                        </li>
-                                    `).join('')}
+                                        </li>`;
+                                    }).join('')}
                                 </ul>
                             ` : '<div class="empty-state">Not yet covered (WCAG 2.0 only)</div>'}
                             ${data.section_508_note ? `<div class="note">${data.section_508_note}</div>` : ''}
                         </div>
                         <div class="standard-section">
                             <div class="standard-title">
-                                <span class="standard-icon icon-en"></span>
-                                EN 301 549
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="standard-icon icon-en"></span>
+                                    EN 301 549
+                                </span>
+                                <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf" class="standard-link" target="_blank" rel="noopener noreferrer">EN 301 549 documentation (PDF)</a>
                             </div>
                             ${data.en_301_549.length > 0 ? `
                                 <ul class="requirement-list">
-                                    ${data.en_301_549.map(req => `
-                                        <li class="requirement-item">
-                                            <a href="${getEN301549URL(req)}" target="_blank" rel="noopener noreferrer">${req}</a>
+                                    ${data.en_301_549.map(req => {
+                                        if (req === 'No equivalent criteria') {
+                                            return `<li class="requirement-item" style="border-left-color: #ffc107;">
+                                                <span style="color: #856404; font-style: italic;">${req}</span>
+                                            </li>`;
+                                        }
+                                        return `<li class="requirement-item">
+                                            <span style="font-family: 'Courier New', monospace; font-weight: bold;">${req}</span>
                                             <div style="font-size: 0.85em; color: #495057; margin-top: 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
                                                 ${getEN301549Title(req)}
                                             </div>
-                                        </li>
-                                    `).join('')}
+                                        </li>`;
+                                    }).join('')}
                                 </ul>
                             ` : '<div class="empty-state">Not yet covered (WCAG 2.1 only)</div>'}
                         </div>
                     </div>
                 </div>
             `).join('');
+            
+            if (announceResults) {
+                announceResultCount(filtered.length);
+            }
+        }
+
+        function announceResultCount(count) {
+            const announcement = document.getElementById('resultsAnnouncement');
+            if (count === 0) {
+                announcement.textContent = 'No results found. Try adjusting your search or filters.';
+            } else if (count === 1) {
+                announcement.textContent = '1 result found';
+            } else {
+                announcement.textContent = `${count} results found`;
+            }
         }
 
         function filterMappings(mappings) {
@@ -790,15 +836,25 @@
                     btn.classList.add('active');
                     btn.setAttribute('aria-pressed', 'true');
                     currentFilter = btn.dataset.filter;
-                    renderMappings();
+                    renderMappings(true); // Announce results when filtering
                 });
             });
 
-            // Search input
+            // Search input with debounce
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', (e) => {
                 searchTerm = e.target.value;
-                renderMappings();
+                renderMappings(false); // Update immediately without announcement
+                
+                // Clear existing timer
+                if (searchDebounceTimer) {
+                    clearTimeout(searchDebounceTimer);
+                }
+                
+                // Set new timer for announcement (500ms delay)
+                searchDebounceTimer = setTimeout(() => {
+                    renderMappings(true); // Re-render with announcement after delay
+                }, 500);
             });
         }
 
